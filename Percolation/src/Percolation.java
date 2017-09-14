@@ -34,6 +34,7 @@ public class Percolation
     	
     	grid[i][j] = true;
     	
+    	// look for blocks around it to union with
     	if ((i - 1) != 0 && grid[i - 1][j])
     	{
     		union.union(translate(i, j), translate(i - 1, j));
@@ -87,9 +88,10 @@ public class Percolation
     	}
     }
     
-    public static void main(String[] args)
+    /*public static void main(String[] args)
     {
     	PercolationStats test = new PercolationStats(100, 100);
+    	test.open
     	System.out.println(test.mean());
-    }
+    }*/
 }
