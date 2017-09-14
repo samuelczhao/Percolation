@@ -22,7 +22,7 @@ public class Percolation
     	
     	for (int i = 1; i <= n; i++)
     	{
-    		grid[1][n] = true;
+    		grid[1][i] = true;
     		union.union(top, i);
     		union.union(bottom, n * n + 1 - i);
     	}
