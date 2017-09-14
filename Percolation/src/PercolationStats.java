@@ -36,6 +36,11 @@ public class PercolationStats
     
     public double stddev()
     {
+    	if (trials == 1)
+    	{
+    		return Double.NaN;
+    	}
+    	
     	double sum = 0;
     	
        	for (int i = 0; i < percolationThresholds.length; i++)
