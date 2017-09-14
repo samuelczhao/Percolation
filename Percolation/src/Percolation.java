@@ -1,5 +1,7 @@
 public class Percolation
-{            
+{         
+	private boolean[][] grid;
+	
     public Percolation(int n)
     {
     	throw new UnsupportedOperationException();
