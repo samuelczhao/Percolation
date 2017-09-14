@@ -3,6 +3,7 @@ public class Percolation
 	private boolean[][] grid;
 	private int gridSize;
 	private WeightedQuickUnionUF union;
+	private WeightedQuickUnionUF union1;
 	private int top;
 	private int bottom;
 	
@@ -17,6 +18,7 @@ public class Percolation
     	grid = new boolean[n + 1][n + 1];
     	gridSize = n;
     	union = new WeightedQuickUnionUF(n * n + 2);
+    	union1 = new WeightedQuickUnionUF(n * n + 2);
     	top = 0;
     	bottom = n * n + 1;
     }
@@ -30,6 +32,7 @@ public class Percolation
     	if (i - 1 == 0)
     	{
     		union.union(translate(i, j), top);
+    		union1.union(translate(i, j), top);
     	}
     	
     	if (i == gridSize)
@@ -41,21 +44,25 @@ public class Percolation
     	if ((i - 1) != 0 && grid[i - 1][j])
     	{
     		union.union(translate(i, j), translate(i - 1, j));
+    		union1.union(translate(i, j), translate(i - 1, j));
     	}
     	
     	if ((i + 1) <= gridSize && grid[i + 1][j])
     	{
     		union.union(translate(i, j), translate(i + 1, j));
+    		union1.union(translate(i, j), translate(i + 1, j));
     	}
     	
     	if ((j - 1) != 0 && grid[i][j - 1])
     	{
     		union.union(translate(i, j), translate(i, j - 1));
+    		union1.union(translate(i, j), translate(i, j - 1));
     	}
     	
     	if ((j + 1) <= gridSize && grid[i][j + 1])
     	{
     		union.union(translate(i, j), translate(i, j + 1));
+    		union1.union(translate(i, j), translate(i, j + 1));
     	}
     }
 
@@ -70,7 +77,7 @@ public class Percolation
     {
     	indexValidator(i, j);
     	
-    	return union.connected(translate(i, j), top);
+    	return union1.connected(translate(i, j), top);
     }
 
     public boolean percolates()
