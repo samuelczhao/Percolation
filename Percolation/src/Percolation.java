@@ -22,9 +22,9 @@ public class Percolation
     	
     	for (int i = 1; i <= n; i++)
     	{
-    		grid[1][i] = true;
-    		union.union(top, i);
-    		union.union(bottom, n * n + 1 - i);
+    		// grid[1][i] = true;
+    		// union.union(top, i);
+    		// union.union(bottom, n * n + 1 - i);
     	}
     }
 
@@ -34,13 +34,23 @@ public class Percolation
     	
     	grid[i][j] = true;
     	
+    	if (i - 1 == 0)
+    	{
+    		union.union(translate(i, j), top);
+    	}
+    	
+    	if (i == gridSize)
+    	{
+    		union.union(translate(i, j), bottom);
+    	}
+    	
     	// look for blocks around it to union with
     	if ((i - 1) != 0 && grid[i - 1][j])
     	{
     		union.union(translate(i, j), translate(i - 1, j));
     	}
     	
-    	if ((i + 1) <= gridSize && grid[i + 1][j])
+    	if ((i + 1) < gridSize && grid[i + 1][j])
     	{
     		union.union(translate(i, j), translate(i + 1, j));
     	}
