@@ -19,13 +19,6 @@ public class Percolation
     	union = new WeightedQuickUnionUF(n * n + 2);
     	top = 0;
     	bottom = n * n + 1;
-    	
-    	for (int i = 1; i <= n; i++)
-    	{
-    		// grid[1][i] = true;
-    		// union.union(top, i);
-    		// union.union(bottom, n * n + 1 - i);
-    	}
     }
 
     public void open(int i, int j)
@@ -50,7 +43,7 @@ public class Percolation
     		union.union(translate(i, j), translate(i - 1, j));
     	}
     	
-    	if ((i + 1) < gridSize && grid[i + 1][j])
+    	if ((i + 1) <= gridSize && grid[i + 1][j])
     	{
     		union.union(translate(i, j), translate(i + 1, j));
     	}
@@ -97,11 +90,4 @@ public class Percolation
     		throw new IndexOutOfBoundsException();
     	}
     }
-    
-    /*public static void main(String[] args)
-    {
-    	PercolationStats test = new PercolationStats(100, 100);
-    	test.open
-    	System.out.println(test.mean());
-    }*/
 }
