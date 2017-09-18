@@ -103,6 +103,7 @@ public class Percolation
 	private boolean[][] open, full;
 	private int n;
 
+	
 	public Percolation(int n) 
 	{
 		if (n <= 0) 
