@@ -98,64 +98,81 @@
 //    	}
 //    }
 //}
-public class Percolation {
+public class Percolation 
+{
 	private boolean[][] open, full;
 	private int n;
 
-	public Percolation(int n) {
-		if (n <= 0) {
+	public Percolation(int n) 
+	{
+		if (n <= 0) 
+		{
 			throw new IllegalArgumentException("Cannot have negative grid size.");
 		}
 
 		open = new boolean[n + 2][n + 2];
 		full = new boolean[n + 2][n + 2];
 		this.n = n;
-		for (int i = 0; i < n + 2; i++)
-			for (int j = 0; j < n + 2; j++)
-				open[i][j] = full[i][j] = false;
+		
 		for (int i = 1; i < n + 1; i++)
+		{
 			open[0][i] = open[n + 1][i] = full[0][i] = true;
+		}
 	}
 
-	public void open(int i, int j) {
+	public void open(int i, int j) 
+	{
 		indexValidator(i, j);
 		if (open[i][j])
+		{
 			return;
+		}
+		
 		open[i][j] = true;
+		
 		if (full[i - 1][j] || full[i + 1][j] || full[i][j - 1] || full[i][j + 1])
+		{
 			full(i, j);
-
+		}
 	}
 
-	private void full(int i, int j) {
-		if ( i > n + 1||!open[i][j] || full[i][j] )
+	private void full(int i, int j) 
+	{
+		if (i > n + 1 || !open[i][j] || full[i][j])
+		{
 			return;
+		}
+		
 		full[i][j] = true;
 		full(i - 1, j);
 		full(i + 1, j);
 		full(i, j - 1);
 		full(i, j + 1);
-
 	}
 
-	public boolean isOpen(int i, int j) {
+	public boolean isOpen(int i, int j) 
+	{
 		indexValidator(i, j);
 
 		return open[i][j];
 	}
 
-	public boolean isFull(int i, int j) {
+	public boolean isFull(int i, int j) 
+	{
 		indexValidator(i, j);
 
 		return full[i][j];
 	}
 
-	public boolean percolates() {
+	public boolean percolates() 
+	{
 		return full[n + 1][1];
 	}
 
-	private void indexValidator(int i, int j) {
-		if (i <= 0 || j <= 0 || i > n || j > n) {
+	private void indexValidator(int i, int j) 
+	{
+		if (i <= 0 || j <= 0 || i > n || j > n) 
+		{
 			throw new IndexOutOfBoundsException();
 		}
 	}
