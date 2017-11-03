@@ -90,7 +90,7 @@ public class PercolationStats
     
     public static void Main(String[] args)
     {
-    	PercolationStats test = new PercolationStats(100, 100);
+    	PercolationStats test = new PercolationStats(500, 500);
     	System.out.println(test.mean());
     	System.out.println("Hello World");
     }
